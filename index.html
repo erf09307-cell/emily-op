@@ -1,123 +1,363 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Consultation</title>
-    <!-- 引入 Tailwind CSS 用于快速构建美观的界面 -->
-    <script src="https://tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#061225">
+  <meta name="description" content="남성 건강 상담을 위한 프라이빗 온라인 예약 안내. 상담 절차와 개인정보 처리 기준을 명확하게 확인하세요.">
+  <title>MENHANCE | 프라이빗 남성 건강 상담</title>
+  
+  <!-- ==================== [保留] SaleSmartly 核心客服挂件脚本 ==================== -->
+  <script src="https://plugin-code.salesmartly.com/js/project_839145_873794_1791183960.js"></script>
+  <script>
+      (function(d, s, id, w, n) {
+          w.__ssc = w.__ssc || {};
+          w.__ssc.license = 'g21lq1r'; 
+          if (w.ssq) return false;
+          n = w.ssq = function() {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          n.push=n;n.loaded=!0;n.queue=[];
+          var js, sjs = d.getElementsByTagName(s);
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          var deUrl = atob('aHR0cHM6Ly9wbHVnaW4tY29kZS5zYWxlc21hcnRseS5jb20='), path = '/chat/widget-v2/code/install.js';
+          var cs = d.currentScript, csUrl = deUrl;
+          if (cs && cs.src) {var scriptURL = new URL(cs.src); csUrl = scriptURL.origin;}
+          js.src = csUrl + path;
+          sjs.parentNode.insertBefore(js, sjs);
+          js.onerror = function() {
+              if (d.getElementById(id)) {var el = d.getElementById(id); el.parentNode.removeChild(el);}
+              var newJs = d.createElement(s); newJs.id = id;
+              newJs.src = deUrl + path;
+              sjs.parentNode.insertBefore(newJs, sjs);
+          }
+      }(document, 'script', 'ss-chat', window));
+  </script>
+
+  <!-- ==================== [集成] LINE 和 WhatsApp 多渠道跳转逻辑 ==================== -->
+  <script>
+    // 跳转到 WhatsApp 的方法 (绑定在主画面“비공개 상담 문의하기 →”按钮上)
+    function openWhatsAppChat() {
+        // 🚨 请在此处将 85260000000 替换为您真正的 WhatsApp 客服手机号码（带国家代码，不加+号或空格）
+        var whatsappNumber = "85260000000"; 
+        var defaultText = encodeURIComponent("안녕하세요. 비공개 상담 문의드립니다.");
+        var url = "https://wa.me" + whatsappNumber + "?text=" + defaultText;
+        window.open(url, '_blank');
+    }
+
+    // 跳转到 LINE 的方法 (绑定在右上角“상담 예약 ↗”按钮上)
+    function openLineChat() {
+        // 🚨 请在此处将 YOUR_LINE_ID 替换为您真正的 LINE 官方号 ID 或者好友链接
+        var lineUrl = "https://line.me"; 
+        window.open(lineUrl, '_blank');
+    }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050d1b;
+      --bg2: #08172b;
+      --panel: #0b1c33;
+      --panel2: #0d2541;
+      --line: rgba(117,202,255,.2);
+      --cyan: #55eaff;
+      --blue: #328fff;
+      --white: #f4f9ff;
+      --muted: #a9bdd2;
+      --ok: #a2f4df;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Inter, "Pretendard", "Noto Sans KR", system-ui,
+        -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 44px));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(4,12,25,.88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-weight: 950;
+      letter-spacing: .15em;
+      font-size: 1.08rem;
+    }
+
+    .logo span { color: var(--cyan); }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: .9rem;
+      color: #c5d7e8;
+    }
+
+    .navlinks a:hover { color: var(--cyan); }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+
+    .btn-primary {
+      color: #03101c;
+      background: linear-gradient(110deg, #55eaff, #9af5ff);
+      box-shadow: 0 0 28px rgba(85,234,255,.16);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px rgba(85,234,255,.28);
+    }
+
+    .btn-ghost {
+      border-color: rgba(117,202,255,.36);
+      background: rgba(14,42,72,.55);
+      color: #f1fbff;
+    }
+
+    .btn-ghost:hover { border-color: var(--cyan); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 78px 0 68px;
+      background:
+        radial-gradient(ellipse at 78% 42%, rgba(0,127,255,.2), transparent 38%),
+        linear-gradient(135deg, #061225, #081a31 58%, #04101f);
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(75,169,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75,169,255,.045) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, #000, transparent);
+    }
+
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 7px 13px;
+      color: var(--cyan);
+      font-size: .75rem;
+      letter-spacing: .13em;
+      background: rgba(5,24,46,.68);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    h1 {
+      font-size: clamp(2.55rem, 5vw, 4.65rem);
+      line-height: 1.14;
+      letter-spacing: -.055em;
+      margin: 23px 0 20px;
+      font-weight: 950;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--cyan);
+      text-shadow: 0 0 28px rgba(85,234,255,.16);
+    }
+
+    .lead {
+      font-size: 1.06rem;
+      color: #c3d6e9;
+      max-width: 560px;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 28px 0 18px;
+    }
+
+    .microcopy {
+      font-size: .78rem;
+      color: #8faac4;
+    }
+
+    /* 右侧原版视觉模块：人体发光扫描图结构与样式 */
+    .visual {
+      position: relative;
+      min-height: 480px;
+      display: grid;
+      place-items: center;
+    }
+
+    .orbit {
+      position: absolute;
+      width: min(100%, 420px);
+      aspect-ratio: 1;
+      border: 1px dashed rgba(85,234,255,.25);
+      border-radius: 50%;
+      box-shadow: 0 0 50px rgba(0,145,255,.08);
+    }
+
+    /* 原版发光虚拟人体轮廓和扫描网格特效 */
+    .human-silhouette {
+      position: relative;
+      width: 200px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(85,234,255,0.2) 0%, transparent 70%);
+      border: 2px solid rgba(85,234,255,0.4);
+      border-radius: 100px / 50px;
+      box-shadow: 0 0 30px rgba(85,234,255,0.25);
+      z-index: 1;
+    }
     
-    <!-- ==================== [保留] SaleSmartly 核心客服脚本开始 ==================== -->
-    <script src="https://plugin-code.salesmartly.com/js/project_839145_873794_1791183960.js"></script>
-    <script>
-        (function(d, s, id, w, n) {
-            w.__ssc = w.__ssc || {};
-            w.__ssc.license = 'g21lq1r'; // 您的 SaleSmartly 专属许可证代码
-            if (w.ssq) return false;
-            n = w.ssq = function() {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            n.push=n;n.loaded=!0;n.queue=[];
-            var js, sjs = d.getElementsByTagName(s);
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            var deUrl = atob('aHR0cHM6Ly9wbHVnaW4tY29kZS5zYWxlc21hcnRseS5jb20='), path = '/chat/widget-v2/code/install.js';
-            var cs = d.currentScript, csUrl = deUrl;
-            if (cs && cs.src) {var scriptURL = new URL(cs.src); csUrl = scriptURL.origin;}
-            js.src = csUrl + path;
-            sjs.parentNode.insertBefore(js, sjs);
-            js.onerror = function() {
-                if (d.getElementById(id)) {var el = d.getElementById(id); el.parentNode.removeChild(el);}
-                var newJs = d.createElement(s); newJs.id = id;
-                newJs.src = deUrl + path;
-                sjs.parentNode.insertBefore(newJs, sjs);
-            }
-        }(document, 'script', 'ss-chat', window));
-    </script>
-    <!-- ==================== [保留] SaleSmartly 核心客服脚本结束 ==================== -->
+    .human-silhouette::before {
+      content: "";
+      position: absolute;
+      inset: 20px;
+      border: 1px dashed rgba(85,234,255,0.3);
+      border-radius: 80px / 40px;
+    }
 
-    <!-- ==================== LINE 和 WhatsApp 多渠道跳转脚本 ==================== -->
-    <script>
-        // 1. 跳转到 WhatsApp 的方法
-        function openWhatsAppChat() {
-            // 🚨 请在此处将 85260000000 替换为您真正的 WhatsApp 客服手机号码（带国家代码，不加+号或空格）
-            var whatsappNumber = "85260000000"; 
-            var defaultText = encodeURIComponent("안녕하세요. 비공개 상담 문의드립니다.");
-            var url = "https://wa.me" + whatsappNumber + "?text=" + defaultText;
-            window.open(url, '_blank');
-        }
+    /* 原版引导发光文本卡片标签 */
+    .scan-label {
+      position: absolute;
+      border: 1px solid rgba(117,202,255,0.25);
+      background: rgba(4,19,39,0.85);
+      padding: 10px 14px;
+      border-radius: 8px;
+      color: #d3faff;
+      font-size: 0.72rem;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
 
-        // 2. 跳转 to LINE 的方法
-        function openLineChat() {
-            // 🚨 请在此处将 YOUR_LINE_ID 替换为您真正的 LINE 官方号 ID 或者好友链接
-            var lineUrl = "https://line.me"; 
-            window.open(lineUrl, '_blank');
-        }
-    </script>
+    .scan-label b {
+      display: block;
+      color: var(--cyan);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 3px;
+    }
 
-    <style>
-        body {
-            background-color: #0b192c; /* 深暗蓝色背景 */
-        }
-    </style>
+    /* 精准还原三个标签卡片的位置坐标 */
+    .label-a { bottom: 12%; left: 0px; }
+    .label-b { top: 25%; right: -20px; }
+    .label-c { bottom: 24%; right: -20px; }
+  </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 text-white font-sans">
+<body>
 
-    <!-- 主容器卡片 -->
-    <div class="w-full max-w-4xl bg-[#15305B] rounded-2xl p-8 md:p-12 shadow-2xl border border-blue-900/30 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        
-        <!-- 左侧：提示与说明信息 -->
-        <div class="space-y-6">
-            <div>
-                <p class="text-blue-400 uppercase tracking-widest text-xs font-bold mb-3">Private Consultation</p>
-                <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight text-white mb-6">
-                    나에게 필요한 안내,<br>지금 문의해 보세요.
-                </h1>
-                <p class="text-gray-300 text-sm leading-relaxed mb-6">
-                    민감한 건강 고민도 부담 없이 문의하실 수 있도록 프라이빗 상담 채널을 운영하고 있습니다. 원하시는 플랫폼을 선택하여 상담을 시작해 보세요.
-                </p>
-
-                <!-- 勾选特性列表 -->
-                <ul class="space-y-4 text-sm text-gray-200布">
-                    <li class="flex items-start">
-                        <span class="text-blue-400 mr-2">✓</span>
-                        <span>1:1 비공개 비밀 보장 상담</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-blue-400 mr-2">✓</span>
-                        <span>실시간 대기 중인 전문 상담원 연결</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 左下角黄色边框警告提示 -->
-            <div class="border border-amber-500/40 bg-amber-500/5 rounded-xl p-4 text-xs text-amber-300/90 leading-relaxed">
-                <strong>운영 전 확인:</strong> 이 템플릿은 의료기관이나 의료진의 자격을 인증하지 않으며 의료 진단·치료를 제공하지 않습니다.
-            </div>
-        </div>
-
-        <!-- 右侧：原表单已删除，现改为美观的点击咨询通道 -->
-        <div class="flex flex-col space-y-4 w-full">
-            <h2 class="text-sm font-semibold text-gray-300 tracking-wide mb-2">원하시는 상담 채널을 선택해 주세요</h2>
-            
-            <!-- WhatsApp 咨询按钮 -->
-            <button onclick="openWhatsAppChat()" class="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-green-500/10 flex items-center justify-center space-x-3 text-base">
-                <span class="text-lg">💬</span>
-                <span>WhatsApp 실시간 상담 시작</span>
-                <span>→</span>
-            </button>
-
-            <!-- LINE 咨询按钮 -->
-            <button onclick="openLineChat()" class="w-full bg-gradient-to-r from-green-400 to-lime-500 hover:from-green-500 hover:to-lime-600 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 shadow-lg shadow-lime-500/10 flex items-center justify-center space-x-3 text-base">
-                <span class="text-lg">🟢</span>
-                <span>LINE 실시간 상담 시작</span>
-                <span>→</span>
-            </button>
-
-            <p class="text-center text-[11px] text-gray-400/70 pt-2">
-                버튼을 누르면 해당 메신저 앱 또는 웹 화면으로 안전하게 연결됩니다.
-            </p>
-        </div>
-
+  <!-- 顶部导航栏 (完全参照图片还原) -->
+  <header class="topbar">
+    <div class="wrap nav">
+      <div class="logo">MEN<span>HANCE</span></div>
+      <div class="navlinks">
+        <a href="#services">서비스 안내</a>
+        <a href="#process">상담 절차</a>
+        <a href="#faq">자주 묻는 질문</a>
+        <!-- [LINE 分流点] 右上角按钮点击后唤起 LINE -->
+        <button onclick="openLineChat()" class="btn btn-primary" style="min-height:40px; padding:8px 18px; font-size:0.85rem; border-radius: 8px;">상담 예약 ↗</button>
+      </div>
     </div>
+  </header>
 
-</body>
-</html>
+  <!-- 首屏主体区域 (完美复刻原图布局) -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      
+      <!-- 左侧：文案与主咨询动作区域 -->
+      <div>
+        <div class="eyebrow">
+          <div class="dot"></div>
+          PRIVATE MEN'S WELLNESS
+        </div>
+        <h1>나를 위한 건강 관리,<br><em>더 편안하고 프라이빗하게.</em></h1>
+        <p class="lead">민감한 건강 고민도 부담 없이 문의할 수 있도록, 상담 절차와 개인정보 처리 기준을 명확하게 안내하는 남성 건강 상담 페이지입니다.</p>
+        
+        <div class="hero-actions">
+          <!-- [WhatsApp 分流点] 中心核心大按钮点击后唤起 WhatsApp -->
+          <button onclick="openWhatsAppChat()" class="btn btn-primary">비공개 상담 문의하기 →</button>
+          <a href="#services" class="btn btn-ghost">서비스 알아보기</a>
+        </div>
+        
+        <div class="microcopy mt-4 text-gray-500">온라인 문의 안내 · 개인정보 보호 우선 · 명확한 상담 절차</div>
+      </div>
+      
+      <!-- 右侧：高保真原版科技感人体扫描图视觉效果 -->
+      <div class="visual">
+        <div class="orbit"></div>
+        
+        <!-- 虚拟扫描人体核心躯干 -->
+        <div class="human-silhouette"></div>
+        
+        <!-- 标签卡片 A: 左下方 PERSONAL GUIDE -->
+        <div class="scan-label label-a">
+          <b>PERSONAL GUIDE</b>
+          상담 절차를 명확하게
+        </div>
+        
+        <!-- 标签卡片 B: 右上方 PRIVATE CARE -->
