@@ -1,346 +1,374 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>맨핸스(MENHANCE) | 프라이빗 남성 건강 및 심리 상담</title>
-    <style>
-        /* 전역 스타일 초기화 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#061225">
+  <meta name="description" content="남성 건강 상담을 위한 프라이빗 온라인 예약 안내. 상담 절차와 개인정보 처리 기준을 명확하게 확인하세요.">
+  <title>MENHANCE | 프라이빗 남성 건강 상담</title>
+  
+  <!-- ==================== [保留] SaleSmartly 核心客服挂件脚本 ==================== -->
+  <script src="https://salesmartly.com"></script>
+  <script>
+      (function(d, s, id, w, n) {
+          w.__ssc = w.__ssc || {};
+          w.__ssc.license = 'g21lq1r'; 
+          if (w.ssq) return false;
+          n = w.ssq = function() {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          n.push=n;n.loaded=!0;n.queue=[];
+          var js, sjs = d.getElementsByTagName(s);
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          var deUrl = atob('aHR0cHM6Ly9wbHVnaW4tY29kZS5zYWxlc21hcnRseS5jb20='), path = '/chat/widget-v2/code/install.js';
+          var cs = d.currentScript, csUrl = deUrl;
+          if (cs && cs.src) {var scriptURL = new URL(cs.src); csUrl = scriptURL.origin;}
+          js.src = csUrl + path;
+          sjs.parentNode.insertBefore(js, sjs);
+          js.onerror = function() {
+              if (d.getElementById(id)) {var el = d.getElementById(id); el.parentNode.removeChild(el);}
+              var newJs = d.createElement(s); newJs.id = id;
+              newJs.src = deUrl + path;
+              sjs.parentNode.insertBefore(newJs, sjs);
+          }
+      }(document, 'script', 'ss-chat', window));
+  </script>
 
-        body, html {
-            width: 100%;
-            background-color: #030a21; /* 기본 심해 청색 배경 */
-            color: #ffffff;
-            scroll-behavior: smooth;
-        }
+  <!-- ==================== [集成] LINE 和 WhatsApp 多渠道跳转逻辑 ==================== -->
+  <script>
+    // 手机端一键唤起 WhatsApp 
+    function openWhatsAppChat() {
+        // 🚨 请在此处将 85260000000 替换为您真正的 WhatsApp 客服手机号码（带国家代码，不加+号或空格）
+        var whatsappNumber = "85260000000"; 
+        var defaultText = encodeURIComponent("안녕하세요. 비공개 상담 문의드립니다.");
+        var url = "https://wa.me" + whatsappNumber + "?text=" + defaultText;
+        window.open(url, '_blank');
+    }
 
-        /* ---------------- [1] 히어로 섹션 (첫 화면) ---------------- */
-        .hero-section {
-            width: 100%;
-            min-height: 100vh;
-            background: radial-gradient(circle at 75% 50%, #153770 0%, #061539 60%, #030a21 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+    // 手机端一键唤起 LINE
+    function openLineChat() {
+        // 🚨 请在此处将 YOUR_LINE_ID 替换为您真正的 LINE 官方号 ID 或者好友链接
+        var lineUrl = "https://line.me"; 
+        window.open(lineUrl, '_blank');
+    }
+  </script>
 
-        /* 상단 네비게이션 바 (회사명 표시) */
-        .header-nav {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 30px 40px 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050d1b;
+      --bg2: #08172b;
+      --panel: #0b1c33;
+      --panel2: #0d2541;
+      --line: rgba(117,202,255,.2);
+      --cyan: #55eaff;
+      --blue: #328fff;
+      --white: #f4f9ff;
+      --muted: #a9bdd2;
+      --ok: #a2f4df;
+      --max: 1160px;
+    }
 
-        .company-logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            color: #ffffff;
-        }
+    * { box-sizing: border-box; }
 
-        .company-logo span {
-            color: #55eaff; /* 하늘색 포인트 컬러 */
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        /* 메인 컨텐츠 컨테이너 */
-        .main-container {
-            max-width: 1200px;
-            width: 100%;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            flex: 1;
-        }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--white);
+      font-family: Inter, "Pretendard", "Noto Sans KR", system-ui,
+        -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        /* 좌측 텍스트 영역 */
-        .content-left {
-            flex: 1;
-            max-width: 600px;
-            z-index: 2;
-            padding-right: 20px;
-        }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            font-size: 14px;
-            color: #a0aec0;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
+    .wrap {
+      width: min(var(--max), calc(100% - 32px)); /* 手机端两边精致留白 */
+      margin-inline: auto;
+    }
 
-        .badge::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #06C755; /* 라인 그린 컬러 */
-            border-radius: 50%;
-            margin-right: 8px;
-        }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(4,12,25,.88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
 
-        .main-title {
-            font-size: 46px;
-            font-weight: 800;
-            line-height: 1.4;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
+    .nav {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
 
-        .highlight-text {
-            color: #55eaff; 
-        }
+    .logo {
+      font-weight: 950;
+      letter-spacing: .15em;
+      font-size: 1.08rem;
+    }
 
-        .sub-title {
-            font-size: 17px;
-            color: #cbd5e1;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
+    .logo span { color: var(--cyan); }
 
-        /* LINE 상담 버튼 그룹 */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-        }
+    .navlinks {
+      display: flex;
+      align-items: center;
+    }
 
-        .btn {
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 30px; /* 둥근 버튼 형태로 변경 */
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
+    .btn {
+      min-height: 48px; /* 完美符合移动端手指头点击的安全高度 */
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 850;
+      transition: transform .2s, box-shadow .2s;
+    }
 
-        .btn-line-primary {
-            background-color: #06C755; /* LINE 공식 브랜드 컬러 */
-            color: #ffffff;
-            border: none;
-        }
+    .btn-primary {
+      color: #03101c;
+      background: linear-gradient(110deg, #55eaff, #9af5ff);
+      box-shadow: 0 0 24px rgba(85,234,255,.16);
+    }
 
-        .btn-line-primary:hover {
-            background-color: #05b34c;
-            box-shadow: 0 4px 20px rgba(6, 199, 85, 0.4);
-            transform: translateY(-2px);
-        }
+    .btn-primary:active, .btn-yellow-glow:active {
+      transform: scale(0.97); /* 手机端手指按下去时的物理弹性回馈 */
+    }
 
-        .btn-line-secondary {
-            background-color: rgba(14, 42, 72, 0.55);
-            color: #ffffff;
-            border: 1px solid rgba(117, 202, 255, 0.36);
-        }
+    /* 🌟 新增：专为吸引韩国人设计的金黄色无限呼吸闪烁特效（LINE专用） */
+    .btn-yellow-glow {
+      color: #03101c !important;
+      background: linear-gradient(110deg, #ffe600, #ffb700) !important;
+      box-shadow: 0 0 20px rgba(255, 230, 0, 0.45) !important;
+      border-radius: 6px !important; /* 还原韩国主流卡片式直角精细观感 */
+      animation: pulseGlow 2.2s infinite ease-in-out; /* 激活无限循环动画 */
+    }
 
-        .btn-line-secondary:hover {
-            border-color: #55eaff;
-            background-color: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
-        }
+    /* 呼吸发光特效算法：规律地微幅放大并加深金黄色光晕，形成天然视觉引流 */
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
+      }
+      50% {
+        transform: scale(1.05); /* 微微膨胀 5% 锁住视线 */
+        box-shadow: 0 0 32px rgba(255, 230, 0, 0.85); /* 黄金光晕发光加倍 */
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
+      }
+    }
 
-        /* 우측 상담사 사진 영역 */
-        .image-right {
-            flex: 1;
-            height: 100%;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            z-index: 1;
-        }
+    .btn-ghost {
+      border-color: rgba(117,202,255,.36);
+      background: rgba(14,42,72,.55);
+      color: #f1fbff;
+    }
 
-        .consultant-img {
-            max-height: 80vh;
-            max-width: 100%;
-            object-fit: contain;
-            display: block;
-            filter: drop-shadow(0 0 30px rgba(25, 157, 255, 0.3));
-        }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 40px 0 60px; 
+      background:
+        radial-gradient(circle at 50% 80%, rgba(0,127,255,.18), transparent 50%),
+        linear-gradient(180deg, #061225, #04101f);
+    }
 
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(75,169,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75,169,255,.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, #000, transparent);
+    }
 
-        /* ---------------- [2] 소개글 및 칼럼 섹션 ---------------- */
-        .article-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 40px;
-        }
+    /* 移动端强制开启一列垂直向下排布，保证小屏绝对不发生版面散架 */
+    .hero-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
 
-        .section-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 50px;
-            text-align: center;
-            letter-spacing: -1px;
-        }
+    /* 当屏幕大于 992px（电脑端）时，无缝切回高大上的双列并排版式 */
+    @media (min-width: 992px) {
+      .hero {
+        padding: 78px 0 68px;
+        background:
+          radial-gradient(ellipse at 78% 42%, rgba(0,127,255,.2), transparent 38%),
+          linear-gradient(135deg, #061225, #081a31 58%, #04101f);
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr .95fr;
+        align-items: center;
+        gap: 30px;
+        flex-direction: row;
+      }
+    }
 
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 60px;
-            height: 4px;
-            background-color: #55eaff;
-            margin: 15px auto 0 auto;
-            border-radius: 2px;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 7px 13px;
+      color: var(--cyan);
+      font-size: .75rem;
+      letter-spacing: .13em;
+      background: rgba(5,24,46,.68);
+    }
 
-        /* 카드 그리드 레이아웃 */
-        .article-grid {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
 
-        .article-card {
-            background: linear-gradient(145deg, rgba(13, 35, 62, 0.9), rgba(6, 19, 36, 0.9));
-            border: 1px solid rgba(117, 202, 255, 0.15);
-            border-radius: 16px;
-            padding: 35px;
-            flex: 1;
-            min-width: 300px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
+    h1 {
+      font-size: clamp(2.0rem, 6vw, 4.2rem); 
+      line-height: 1.2;
+      letter-spacing: -.05em;
+      margin: 18px 0;
+      font-weight: 950;
+    }
 
-        .article-card:hover {
-            transform: translateY(-5px);
-            border-color: #55eaff;
-            box-shadow: 0 10px 25px rgba(85, 234, 255, 0.1);
-        }
+    h1 em {
+      font-style: normal;
+      color: var(--cyan);
+      text-shadow: 0 0 28px rgba(85,234,255,.16);
+    }
 
-        .article-card h3 {
-            font-size: 21px;
-            font-weight: 700;
-            margin-bottom: 18px;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
+    .lead {
+      font-size: 1.0rem;
+      color: #c3d6e9;
+      max-width: 560px;
+      margin-bottom: 20px;
+    }
 
-        .article-card p {
-            font-size: 15px;
-            color: #a9bdd2;
-            line-height: 1.7;
-        }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap; 
+      margin: 24px 0 16px;
+    }
 
+    .microcopy {
+      font-size: .75rem;
+      color: #8faac4;
+    }
 
-        /* ---------------- [3] 하단 한국 표준 푸터 (사업자 정보) ---------------- */
-        .footer-section {
-            background-color: #020717;
-            border-top: 1px solid rgba(117, 202, 255, 0.1);
-            padding: 50px 20px;
-            text-align: center;
-            font-size: 14px;
-            color: #748ba4;
-            line-height: 1.9;
-        }
+    .visual {
+      position: relative;
+      width: 100%;
+      min-height: 380px;
+      display: grid;
+      place-items: center;
+      overflow: visible;
+      margin-top: 10px;
+    }
 
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    @media (min-width: 992px) {
+      .visual {
+        min-height: 480px;
+        margin-top: 0;
+      }
+    }
 
-        .footer-links {
-            margin-bottom: 25px;
-        }
+    .orbit {
+      position: absolute;
+      width: min(100%, 340px);
+      aspect-ratio: 1;
+      border: 1px dashed rgba(85,234,255,.2);
+      border-radius: 50%;
+    }
+    
+    @media (min-width: 992px) {
+      .orbit { width: min(100%, 420px); }
+    }
 
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: 600;
-        }
+    .human-silhouette {
+      position: relative;
+      width: 150px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(85,234,255,0.18) 0%, transparent 70%);
+      border: 2px solid rgba(85,234,255,0.35);
+      border-radius: 100px / 50px;
+      box-shadow: 0 0 24px rgba(85,234,255,0.2);
+      z-index: 1;
+    }
 
-        .footer-links a:hover {
-            color: #55eaff;
-        }
+    @media (min-width: 992px) {
+      .human-silhouette {
+        width: 200px;
+        height: 400px;
+      }
+    }
+    
+    .human-silhouette::before {
+      content: "";
+      position: absolute;
+      inset: 15px;
+      border: 1px dashed rgba(85,234,255,0.25);
+      border-radius: 80px / 40px;
+    }
 
-        .company-info {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            opacity: 0.85;
-        }
+    .scan-label {
+      position: absolute;
+      border: 1px solid rgba(117,202,255,0.2);
+      background: rgba(4,19,39,0.88);
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: #d3faff;
+      font-size: 0.68rem;
+      backdrop-filter: blur(8px);
+      z-index: 2;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+      white-space: nowrap;
+    }
 
-        /* 모바일 디바이스 최적화 (반응형 코드) */
-        @media (max-width: 768px) {
-            .header-nav { padding: 20px 20px 0 20px; justify-content: center; }
-            .main-container { flex-direction: column; text-align: center; padding: 50px 20px; }
-            .content-left { padding-right: 0; margin-top: 30px; margin-bottom: 40px; }
-            .badge { justify-content: center; }
-            .main-title { font-size: 32px; }
-            .btn-group { flex-direction: column; width: 100%; gap: 12px; }
-            .image-right { width: 100%; justify-content: center; }
-            .consultant-img { max-height: 45vh; }
-            .article-grid { flex-direction: column; }
-            .article-section { padding: 60px 20px; }
-        }
-    </style>
+    .scan-label b {
+      display: block;
+      color: var(--cyan);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+
+    .label-a { bottom: 8%; left: -5px; }
+    .label-b { top: 15%; right: -10px; }
+    .label-c { bottom: 26%; right: -10px; }
+
+    @media (min-width: 992px) {
+      .scan-label { font-size: 0.72rem; padding: 10px 14px; }
+      .scan-label b { font-size: 0.65rem; }
+      .label-a { bottom: 12%; left: 0px; }
+      .label-b { top: 25%; right: -20px; }
+      .label-c { bottom: 24%; right: -20px; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- [1] 첫 화면 (히어로 섹션) 시작 -->
-    <div class="hero-section">
-        
-        <!-- 상단 내비게이션 바: 회사명 수정 영역 -->
-        <nav class="header-nav">
-            <div class="company-logo">MENHANCE <span>상담센터</span></div>
-            <div></div> 
-        </nav>
-
-        <div class="main-container">
-            
-            <!-- 좌측 메인 홍보 카피 및 라인 버튼 -->
-            <div class="content-left">
-                <div class="badge">2019년부터 시작된 성(性) 심리학의 새로운 기준</div>
-                
-                <h1 class="main-title">
-                    국내 유일의<br>
-                    심리학 기반 전문<br>
-                    성교육 및 <span class="highlight-text">프라이빗 LINE</span><br>
-                    상담 플랫폼
-                </h1>
-                
-                <p class="sub-title">말하기 힘들었던 고민, 심리적 요인부터 철저하게 분석합니다. 지금 LINE을 통해 100% 익명성이 보장되는 안전한 대화를 시작해 보세요.</p>
-                
-                <!-- LINE 상담 연동 링크 설정 -->
-                <div class="btn-group">
-                    <!-- href="#" 부분을 회원님의 실제 LINE 공식 계정 친구추가 링크(예: https://line.me)로 대체하세요 -->
-                    <a href="#" class="btn btn-line-primary" target="_blank">LINE으로 즉시 1:1 상담하기</a>
-                    <a href="#" class="btn btn-line-secondary" target="_blank">LINE ID 조회: @menhance</a>
-                </div>
-            </div>
-
-            <!-- 우측 상담사 이미지 영역 -->
-            <div class="image-right">
-                <!-- 
-                  [사진 교체 방법]:
-                  본인 센터의 상담사 이미지 파일이 있다면 src="..." 내부 주소를 파일명(예: src="teacher.png")으로 변경하세요.
-                  누끼(배경 제거) 처리가 된 투명 PNG 파일을 사용하셔야 배경 그라데이션과 자연스럽게 어우러집니다.
-                -->
-                <img src="https://unsplash.com" alt="전문 상담사 대표 이미지" class="consultant-img">
-            </div>
-
-        </div>
-    </div>
-    <!-- 첫 화면 종료 -->
-
-
-    <!-- [2] 소개글 및 칼럼 섹션 -->
-    <section class="article-section">
-        <h2 class="section-title">프로그램 소개 및 전문 칼럼</h2>
-        
-        <div class="article-grid">
-            <!-- 칼럼 1 -->
-            <div class="article-card">
-                <h3>01. 심인성 기능 장애 솔루션</h3>
+  <!-- 顶部导航栏 (清空了三个多余菜单，并换上了韩国人最爱点的金黄色闪烁按钮) -->
+  <header class="topbar">
+    <div class="wrap nav">
+      <div class="logo">MEN<span>HANCE</span></div>
+      <div class="navlinks">
