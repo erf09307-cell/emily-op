@@ -1,40 +1,70 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>性心理咨询机构 - 样本页面</title>
+    <title>맨핸스(MENHANCE) | 프라이빗 남성 건강 및 심리 상담</title>
     <style>
-        /* 全局样式初始化 */
+        /* 전역 스타일 초기화 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, sans-serif;
         }
 
-        /* 还原核心：深蓝色渐变背景 */
         body, html {
             width: 100%;
-            height: 100%;
-            overflow-x: hidden;
+            background-color: #030a21; /* 기본 심해 청색 배경 */
+            color: #ffffff;
+            scroll-behavior: smooth;
+        }
+
+        /* ---------------- [1] 히어로 섹션 (첫 화면) ---------------- */
+        .hero-section {
+            width: 100%;
+            min-height: 100vh;
             background: radial-gradient(circle at 75% 50%, #153770 0%, #061539 60%, #030a21 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 상단 네비게이션 바 (회사명 표시) */
+        .header-nav {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 40px 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .company-logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
             color: #ffffff;
         }
 
-        /* 主体布局容器 */
-        .container {
+        .company-logo span {
+            color: #55eaff; /* 하늘색 포인트 컬러 */
+        }
+
+        /* 메인 컨텐츠 컨테이너 */
+        .main-container {
             max-width: 1200px;
-            height: 100vh;
-            margin: 0 auto;
+            width: 100%;
+            margin: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 40px;
-            position: relative;
+            flex: 1;
         }
 
-        /* 左侧文字与按钮内容区 */
+        /* 좌측 텍스트 영역 */
         .content-left {
             flex: 1;
             max-width: 600px;
@@ -42,9 +72,8 @@
             padding-right: 20px;
         }
 
-        /* 小标签样式（自 2019 年起...） */
         .badge {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             font-size: 14px;
             color: #a0aec0;
@@ -52,175 +81,266 @@
             letter-spacing: 1px;
         }
 
-        /* 小标签前的小圆点，颜色可改 */
         .badge::before {
             content: "";
             display: inline-block;
             width: 8px;
             height: 8px;
-            background-color: #6366f1; 
+            background-color: #06C755; /* 라인 그린 컬러 */
             border-radius: 50%;
             margin-right: 8px;
         }
 
-        /* 核心大标题样式 */
         .main-title {
-            font-size: 48px;
+            font-size: 46px;
             font-weight: 800;
             line-height: 1.4;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
-        /* 亮蓝色强调文字样式 */
         .highlight-text {
-            color: #3b82f6; 
+            color: #55eaff; 
         }
 
-        /* 副标题样式 */
         .sub-title {
-            font-size: 16px;
+            font-size: 17px;
             color: #cbd5e1;
             margin-bottom: 40px;
-            font-weight: 400;
-            opacity: 0.8;
+            line-height: 1.6;
+            opacity: 0.9;
         }
 
-        /* 按钮容器 */
+        /* LINE 상담 버튼 그룹 */
         .btn-group {
             display: flex;
             gap: 15px;
         }
 
-        /* 基础按钮样式 */
         .btn {
-            padding: 14px 28px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 6px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 30px; /* 둥근 버튼 형태로 변경 */
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
             text-align: center;
         }
 
-        /* 左侧：亮蓝色实心按钮 */
-        .btn-primary {
-            background-color: #1d4ed8;
+        .btn-line-primary {
+            background-color: #06C755; /* LINE 공식 브랜드 컬러 */
             color: #ffffff;
             border: none;
         }
 
-        .btn-primary:hover {
-            background-color: #2563eb;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        .btn-line-primary:hover {
+            background-color: #05b34c;
+            box-shadow: 0 4px 20px rgba(6, 199, 85, 0.4);
+            transform: translateY(-2px);
         }
 
-        /* 右侧：透明边框按钮 */
-        .btn-secondary {
-            background-color: transparent;
+        .btn-line-secondary {
+            background-color: rgba(14, 42, 72, 0.55);
             color: #ffffff;
-            border: 1px solid #475569;
+            border: 1px solid rgba(117, 202, 255, 0.36);
         }
 
-        .btn-secondary:hover {
+        .btn-line-secondary:hover {
+            border-color: #55eaff;
             background-color: rgba(255, 255, 255, 0.05);
-            border-color: #94a3b8;
+            transform: translateY(-2px);
         }
 
-        /* 右侧人像区域 */
+        /* 우측 상담사 사진 영역 */
         .image-right {
             flex: 1;
             height: 100%;
             display: flex;
             align-items: flex-end;
             justify-content: flex-end;
-            position: relative;
             z-index: 1;
         }
 
-        /* 占位图样式：已设置半透明并完美靠右下角对齐 */
         .consultant-img {
-            max-height: 90vh;
+            max-height: 80vh;
             max-width: 100%;
             object-fit: contain;
             display: block;
-            opacity: 0.9; 
+            filter: drop-shadow(0 0 30px rgba(25, 157, 255, 0.3));
         }
 
-        /* 响应式适配：手机端布局自动变为上下堆叠 */
+
+        /* ---------------- [2] 소개글 및 칼럼 섹션 ---------------- */
+        .article-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #55eaff;
+            margin: 15px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* 카드 그리드 레이아웃 */
+        .article-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .article-card {
+            background: linear-gradient(145deg, rgba(13, 35, 62, 0.9), rgba(6, 19, 36, 0.9));
+            border: 1px solid rgba(117, 202, 255, 0.15);
+            border-radius: 16px;
+            padding: 35px;
+            flex: 1;
+            min-width: 300px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: #55eaff;
+            box-shadow: 0 10px 25px rgba(85, 234, 255, 0.1);
+        }
+
+        .article-card h3 {
+            font-size: 21px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .article-card p {
+            font-size: 15px;
+            color: #a9bdd2;
+            line-height: 1.7;
+        }
+
+
+        /* ---------------- [3] 하단 한국 표준 푸터 (사업자 정보) ---------------- */
+        .footer-section {
+            background-color: #020717;
+            border-top: 1px solid rgba(117, 202, 255, 0.1);
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #748ba4;
+            line-height: 1.9;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            color: #55eaff;
+        }
+
+        .company-info {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0.85;
+        }
+
+        /* 모바일 디바이스 최적화 (반응형 코드) */
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                padding: 40px 20px;
-                height: auto;
-                min-height: 100vh;
-            }
-            .content-left {
-                padding-right: 0;
-                margin-top: 60px;
-                margin-bottom: 40px;
-            }
-            .badge {
-                justify-content: center;
-            }
-            .main-title {
-                font-size: 32px;
-            }
-            .btn-group {
-                flex-direction: column;
-                width: 100%;
-            }
-            .image-right {
-                width: 100%;
-                justify-content: center;
-            }
-            .consultant-img {
-                max-height: 50vh;
-            }
+            .header-nav { padding: 20px 20px 0 20px; justify-content: center; }
+            .main-container { flex-direction: column; text-align: center; padding: 50px 20px; }
+            .content-left { padding-right: 0; margin-top: 30px; margin-bottom: 40px; }
+            .badge { justify-content: center; }
+            .main-title { font-size: 32px; }
+            .btn-group { flex-direction: column; width: 100%; gap: 12px; }
+            .image-right { width: 100%; justify-content: center; }
+            .consultant-img { max-height: 45vh; }
+            .article-grid { flex-direction: column; }
+            .article-section { padding: 60px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- [1] 첫 화면 (히어로 섹션) 시작 -->
+    <div class="hero-section">
         
-        <!-- 左侧可编辑文字区 -->
-        <div class="content-left">
-            <!-- 小标签文字，可自由更改 -->
-            <div class="badge">自 2019 年起 · 性心理学标准</div>
+        <!-- 상단 내비게이션 바: 회사명 수정 영역 -->
+        <nav class="header-nav">
+            <div class="company-logo">MENHANCE <span>상담센터</span></div>
+            <div></div> 
+        </nav>
+
+        <div class="main-container">
             
-            <!-- 大标题，使用 <span class="highlight-text"> 包裹的字会变成亮蓝色 -->
-            <h1 class="main-title">
-                世界上唯——<span class="highlight-text">家</span>以心理<br>
-                学为基础的<br>
-                性教育<br>
-                和咨询机构
-            </h1>
-            
-            <!-- 副标题或说明文字，可更改 -->
-            <p class="sub-title">解答并解决任何心理性问题。</p>
-            
-            <!-- 底部按钮，href="#" 内可替换为您具体的聊天链接或表单链接 -->
-            <div class="btn-group">
-                <a href="https://example.com" class="btn btn-primary" target="_blank">人工智能心理咨询中心</a>
-                <a href="https://example.com" class="btn btn-secondary" target="_blank">KakaoTalk 查询</a>
+            <!-- 좌측 메인 홍보 카피 및 라인 버튼 -->
+            <div class="content-left">
+                <div class="badge">2019년부터 시작된 성(性) 심리학의 새로운 기준</div>
+                
+                <h1 class="main-title">
+                    국내 유일의<br>
+                    심리학 기반 전문<br>
+                    성교육 및 <span class="highlight-text">프라이빗 LINE</span><br>
+                    상담 플랫폼
+                </h1>
+                
+                <p class="sub-title">말하기 힘들었던 고민, 심리적 요인부터 철저하게 분석합니다. 지금 LINE을 통해 100% 익명성이 보장되는 안전한 대화를 시작해 보세요.</p>
+                
+                <!-- LINE 상담 연동 링크 설정 -->
+                <div class="btn-group">
+                    <!-- href="#" 부분을 회원님의 실제 LINE 공식 계정 친구추가 링크(예: https://line.me)로 대체하세요 -->
+                    <a href="#" class="btn btn-line-primary" target="_blank">LINE으로 즉시 1:1 상담하기</a>
+                    <a href="#" class="btn btn-line-secondary" target="_blank">LINE ID 조회: @menhance</a>
+                </div>
             </div>
-        </div>
 
-        <!-- 右侧人像区域 -->
-        <div class="image-right">
-            <!-- 
-               这里使用的是高质量的高清女性咨询师半身透明占位图。
-               如果你要换成自己公司的咨询师照片，只需把下面 src 里的网址替换成你的图片路径即可。
-               建议使用去除背景的 PNG 格式透明图片，效果最完美。
-            -->
-            <img src="https://unsplash.com" alt="专业咨询师" class="consultant-img">
-        </div>
+            <!-- 우측 상담사 이미지 영역 -->
+            <div class="image-right">
+                <!-- 
+                  [사진 교체 방법]:
+                  본인 센터의 상담사 이미지 파일이 있다면 src="..." 내부 주소를 파일명(예: src="teacher.png")으로 변경하세요.
+                  누끼(배경 제거) 처리가 된 투명 PNG 파일을 사용하셔야 배경 그라데이션과 자연스럽게 어우러집니다.
+                -->
+                <img src="https://unsplash.com" alt="전문 상담사 대표 이미지" class="consultant-img">
+            </div>
 
+        </div>
     </div>
+    <!-- 첫 화면 종료 -->
 
-</body>
-</html>
+
+    <!-- [2] 소개글 및 칼럼 섹션 -->
+    <section class="article-section">
+        <h2 class="section-title">프로그램 소개 및 전문 칼럼</h2>
+        
+        <div class="article-grid">
+            <!-- 칼럼 1 -->
+            <div class="article-card">
+                <h3>01. 심인성 기능 장애 솔루션</h3>
