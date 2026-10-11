@@ -1,54 +1,226 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private Consultation Channels</title>
-    <script src="https://tailwindcss.com"></script>
-    <script src="https://plugin-code.salesmartly.com/js/project_839145_873794_1791183960.js"></script>
-    <script>
-        (function(d, s, id, w, n) {
-            w.__ssc = w.__ssc || {}; w.__ssc.license = 'g21lq1r'; if (w.ssq) return false;
-            n = w.ssq = function() {n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            n.push=n;n.loaded=!0;n.queue=[]; var js, sjs = d.getElementsByTagName(s); if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id; var deUrl = atob('aHR0cHM6Ly9wbHVnaW4tY29kZS5zYWxlc21hcnRseS5jb20='), path = '/chat/widget-v2/code/install.js';
-            var cs = d.currentScript, csUrl = deUrl; if (cs && cs.src) {var scriptURL = new URL(cs.src); csUrl = scriptURL.origin;} js.src = csUrl + path; sjs.parentNode.insertBefore(js, sjs);
-            js.onerror = function() { if (d.getElementById(id)) {var el = d.getElementById(id); el.parentNode.removeChild(el);} var newJs = d.createElement(s); newJs.id = id; newJs.src = deUrl + path; sjs.parentNode.insertBefore(newJs, sjs); }
-        }(document, 'script', 'ss-chat', window));
-    </script>
-    <script>
-        function openWhatsAppChat() {
-            var whatsappNumber = "85260000000"; // 🚨 换成您的 WhatsApp 号码
-            var url = "https://wa.me" + whatsappNumber + "?text=" + encodeURIComponent("안녕하세요. 비공개 상담 문의드립니다.");
-            window.open(url, '_blank');
+    <title>性心理咨询机构 - 样本页面</title>
+    <style>
+        /* 全局样式初始化 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
-        function openLineChat() {
-            var lineUrl = "https://line.me"; // 🚨 换成您的 LINE 链接
-            window.open(lineUrl, '_blank');
+
+        /* 还原核心：深蓝色渐变背景 */
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+            background: radial-gradient(circle at 75% 50%, #153770 0%, #061539 60%, #030a21 100%);
+            color: #ffffff;
         }
-    </script>
-    <style> body { background-color: #0b192c; } </style>
+
+        /* 主体布局容器 */
+        .container {
+            max-width: 1200px;
+            height: 100vh;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            position: relative;
+        }
+
+        /* 左侧文字与按钮内容区 */
+        .content-left {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+            padding-right: 20px;
+        }
+
+        /* 小标签样式（自 2019 年起...） */
+        .badge {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #a0aec0;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        /* 小标签前的小圆点，颜色可改 */
+        .badge::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #6366f1; 
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* 核心大标题样式 */
+        .main-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        /* 亮蓝色强调文字样式 */
+        .highlight-text {
+            color: #3b82f6; 
+        }
+
+        /* 副标题样式 */
+        .sub-title {
+            font-size: 16px;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        /* 按钮容器 */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* 基础按钮样式 */
+        .btn {
+            padding: 14px 28px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        /* 左侧：亮蓝色实心按钮 */
+        .btn-primary {
+            background-color: #1d4ed8;
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2563eb;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        /* 右侧：透明边框按钮 */
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #475569;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: #94a3b8;
+        }
+
+        /* 右侧人像区域 */
+        .image-right {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 占位图样式：已设置半透明并完美靠右下角对齐 */
+        .consultant-img {
+            max-height: 90vh;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
+            opacity: 0.9; 
+        }
+
+        /* 响应式适配：手机端布局自动变为上下堆叠 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 40px 20px;
+                height: auto;
+                min-height: 100vh;
+            }
+            .content-left {
+                padding-right: 0;
+                margin-top: 60px;
+                margin-bottom: 40px;
+            }
+            .badge {
+                justify-content: center;
+            }
+            .main-title {
+                font-size: 32px;
+            }
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .image-right {
+                width: 100%;
+                justify-content: center;
+            }
+            .consultant-img {
+                max-height: 50vh;
+            }
+        }
+    </style>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 text-white font-sans">
-    <div class="w-full max-w-4xl bg-[#15305B] rounded-2xl p-6 md:p-12 shadow-2xl border border-blue-900/30 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div class="space-y-4">
-            <p class="text-blue-400 uppercase tracking-widest text-xs font-bold">Private Consultation</p>
-            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight leading-tight">나에게 필요한 안내,<br>지금 문의해 보세요.</h1>
-            <p class="text-gray-300 text-sm leading-relaxed">민감한 건강 고민도 부담 없이 문의하실 수 있도록 프라이빗 상담 채널을 운영하고 있습니다.</p>
-            <ul class="space-y-2 text-xs text-gray-200">
-                <li>✓ 1:1 비공개 비밀 보장 상담</li>
-                <li>✓ 실시간 대기 중인 전문 상담원 연결</li>
-            </ul>
+<body>
+
+    <div class="container">
+        
+        <!-- 左侧可编辑文字区 -->
+        <div class="content-left">
+            <!-- 小标签文字，可自由更改 -->
+            <div class="badge">自 2019 年起 · 性心理学标准</div>
+            
+            <!-- 大标题，使用 <span class="highlight-text"> 包裹的字会变成亮蓝色 -->
+            <h1 class="main-title">
+                世界上唯——<span class="highlight-text">家</span>以心理<br>
+                学为基础的<br>
+                性教育<br>
+                和咨询机构
+            </h1>
+            
+            <!-- 副标题或说明文字，可更改 -->
+            <p class="sub-title">解答并解决任何心理性问题。</p>
+            
+            <!-- 底部按钮，href="#" 内可替换为您具体的聊天链接或表单链接 -->
+            <div class="btn-group">
+                <a href="https://example.com" class="btn btn-primary" target="_blank">人工智能心理咨询中心</a>
+                <a href="https://example.com" class="btn btn-secondary" target="_blank">KakaoTalk 查询</a>
+            </div>
         </div>
-        <div class="flex flex-col space-y-4 w-full">
-            <h2 class="text-xs font-semibold text-gray-300 tracking-wide mb-1">원하시는 상담 채널을 선택해 주세요</h2>
-            <button onclick="openWhatsAppChat()" class="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center space-x-3">
-                <span>💬 WhatsApp 실시간 상담 시작 →</span>
-            </button>
-            <button onclick="openLineChat()" class="w-full bg-gradient-to-r from-green-400 to-lime-500 hover:from-green-500 hover:to-lime-600 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center space-x-3">
-                <span>🟢 LINE 실시간 상담 시작 →</span>
-            </button>
+
+        <!-- 右侧人像区域 -->
+        <div class="image-right">
+            <!-- 
+               这里使用的是高质量的高清女性咨询师半身透明占位图。
+               如果你要换成自己公司的咨询师照片，只需把下面 src 里的网址替换成你的图片路径即可。
+               建议使用去除背景的 PNG 格式透明图片，效果最完美。
+            -->
+            <img src="https://unsplash.com" alt="专业咨询师" class="consultant-img">
         </div>
+
     </div>
+
 </body>
 </html>
