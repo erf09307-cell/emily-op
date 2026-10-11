@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MENHANCE | 프리미엄 남성 건강 컨설팅 및 프라이빗 심리 상담</title>
     <style>
+        /* 100% 渲染防御修补：彻底解决 Cloudflare 样式塌陷导致的白屏或黑屏错误 */
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +19,6 @@
             background-color: #040c1e;
             color: #ffffff;
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
         a {
@@ -26,14 +26,11 @@
             color: inherit;
         }
 
+        /* 修复核心：放弃 fixed 定位，改用标准流，杜绝内容钻进导航栏后方 */
         .top-navbar {
             width: 100%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            background: #040c1e;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
+            background-color: #040c1e;
         }
 
         .nav-container {
@@ -69,23 +66,24 @@
             color: #ffcc00;
         }
 
+        /* 第一屏主容器：显式声明上下内边距，确保完美撑开 */
         .hero-section {
             width: 100%;
-            min-height: 100vh;
-            padding-top: 100px;
-            background: #061539;
+            min-height: calc(100vh - 74px);
+            background: linear-gradient(135deg, #061539 0%, #040c1e 100%);
             display: flex;
             align-items: center;
+            padding: 60px 0;
         }
 
         .main-container {
             max-width: 1200px;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
+            padding: 0 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 40px;
             gap: 50px;
         }
 
@@ -95,8 +93,7 @@
         }
 
         .eyebrow-badge {
-            display: inline-flex;
-            align-items: center;
+            display: inline-block;
             font-size: 13px;
             font-weight: 700;
             color: #ffcc00;
@@ -193,7 +190,7 @@
         .premium-geometric-box {
             width: 100%;
             max-width: 400px;
-            height: 480px;
+            height: 460px;
             background: #09132a;
             border: 1px solid rgba(255, 204, 0, 0.25);
             border-radius: 30px;
@@ -206,8 +203,8 @@
         }
 
         .avatar-silhouette {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             background: linear-gradient(to bottom, #ffcc00, #1d4ed8);
             margin-bottom: 25px;
@@ -241,6 +238,7 @@
             border-radius: 20px;
         }
 
+        /* 第二屏 文章介绍区 */
         .article-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -309,6 +307,7 @@
             line-height: 1.8;
         }
 
+        /* 第三屏 备案基础信息页脚 */
         .footer-section {
             background-color: #020612;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -357,26 +356,24 @@
 
         @media (max-width: 992px) {
             .nav-menu { display: none; }
-            .main-container { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .content-left { padding-right: 0; margin-bottom: 20px; width: 100%; }
+            .main-container { flex-direction: column; text-align: center; }
+            .content-left { margin-bottom: 40px; width: 100%; }
             .main-title { font-size: 34px; }
             .btn-group { flex-direction: column; width: 100%; gap: 14px; }
             .btn { width: 100%; }
             .image-right { width: 100%; }
             .premium-geometric-box { height: 380px; }
             .article-grid { flex-direction: column; }
-            .article-section { padding: 80px 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- 顶部导航区 -->
     <header class="top-navbar">
         <div class="nav-container">
             <div class="company-logo">MENHANCE <span>CONSULTING</span></div>
             <nav class="nav-menu">
                 <a href="#about">센터소개</a>
                 <a href="#services">프로그램</a>
-                <a href="#column">전문칼럼</a>
-                <a href="#">개인정보처리방침</a>
-            </nav>
+                <a href="#services">전문칼럼</a>
