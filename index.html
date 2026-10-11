@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MENHANCE | 프리미엄 남성 건강 컨설팅 및 프라이빗 심리 상담</title>
     <style>
-        /* [Cloudflare Pages 100% 호환] 외부 의존성 제로 정규 기업형 레이아웃 */
+        /* [Cloudflare 100% 호환성 패치 완료] 외부 종속성 및 구문 오류 완벽 해결 */
         * {
             margin: 0;
             padding: 0;
@@ -28,7 +28,7 @@
             color: inherit;
         }
 
-        /* ---------------- [1] 대기업형 상단 네비게이션 ---------------- */
+        /* ---------------- 상단 네비게이션 ---------------- */
         .top-navbar {
             width: 100%;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -58,7 +58,7 @@
         }
 
         .company-logo span {
-            color: #55eaff; 
+            color: #ffcc00; /* 황금빛 포인트 컬러 */
         }
 
         .nav-menu {
@@ -70,14 +70,14 @@
         }
 
         .nav-menu a:hover {
-            color: #55eaff;
+            color: #ffcc00;
         }
 
-        /* ---------------- [2] 히어로 섹션 (첫 화면) ---------------- */
+        /* ---------------- 히어로 섹션 (첫 화면) ---------------- */
         .hero-section {
             width: 100%;
             min-height: 100vh;
-            padding-top: 74px; /* 내비게이션 높이 확보 */
+            padding-top: 74px; 
             background: radial-gradient(circle at 80% 40%, rgba(21, 55, 112, 0.6) 0%, rgba(6, 21, 57, 0.9) 50%, #040c1e 100%);
             display: flex;
             align-items: center;
@@ -104,9 +104,9 @@
             align-items: center;
             font-size: 13px;
             font-weight: 700;
-            color: #55eaff;
-            background: rgba(85, 234, 255, 0.1);
-            border: 1px solid rgba(85, 234, 255, 0.2);
+            color: #ffcc00;
+            background: rgba(255, 204, 0, 0.1);
+            border: 1px solid rgba(255, 204, 0, 0.2);
             padding: 6px 14px;
             border-radius: 99px;
             margin-bottom: 25px;
@@ -121,8 +121,8 @@
         }
 
         .highlight-text {
-            color: #55eaff; 
-            text-shadow: 0 0 20px rgba(85, 234, 255, 0.2);
+            color: #ffcc00; /* 금색 황금빛 강조 버튼 */
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
         }
 
         .sub-title {
@@ -132,7 +132,7 @@
             line-height: 1.75;
         }
 
-        /* ---------------- [🚨 버튼 그룹 & 숨쉬는 플래시 애니메이션] ---------------- */
+        /* ---------------- 버튼 그룹 및 플래시 애니메이션 ---------------- */
         .btn-group {
             display: flex;
             gap: 15px;
@@ -154,7 +154,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
-        /* LINE 그린 버튼 + 플래시 효과 */
+        /* LINE 버튼 + 반짝이는 플래시 효과 */
         .btn-line {
             background-color: #06C755; 
             color: #ffffff;
@@ -167,21 +167,20 @@
             transform: translateY(-2px);
         }
 
-        /* KakaoTalk 옐로우 버튼 + 플래시 효과 */
+        /* KakaoTalk 황금빛 버튼 + 반짝이는 플래시 효과 */
         .btn-kakao {
-            background-color: #FEE500; 
+            background-color: #ffcc00; 
             color: #191919;
             border: none;
             animation: pulse-yellow 2s infinite ease-in-out;
-            animation-delay: 0.5s; /* 교차 플래시 */
+            animation-delay: 0.5s; 
         }
 
         .btn-kakao:hover {
-            background-color: #fada0a;
+            background-color: #e6b800;
             transform: translateY(-2px);
         }
 
-        /* 키프레임 애니메이션 정의 */
         @keyframes pulse-green {
             0% { box-shadow: 0 0 0 0 rgba(6, 199, 85, 0.6); }
             70% { box-shadow: 0 0 0 15px rgba(6, 199, 85, 0); }
@@ -189,12 +188,12 @@
         }
 
         @keyframes pulse-yellow {
-            0% { box-shadow: 0 0 0 0 rgba(254, 229, 0, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(254, 229, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(254, 229, 0, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
         }
 
-        /* ---------------- [3] 우측: 정규 기업형 3D 그라데이션 기하학 아트박스 ---------------- */
+        /* ---------------- 우측: 프리미엄 기하학 아트 박스 ---------------- */
         .image-right {
             flex: 0.8;
             display: flex;
@@ -206,8 +205,8 @@
             width: 100%;
             max-width: 400px;
             height: 500px;
-            background: linear-gradient(135deg, rgba(85, 234, 255, 0.15) 0%, rgba(13, 35, 62, 0.6) 50%, rgba(4, 12, 30, 0.9) 100%);
-            border: 1px solid rgba(85, 234, 255, 0.25);
+            background: linear-gradient(135deg, rgba(255, 204, 0, 0.1) 0%, rgba(13, 35, 62, 0.6) 50%, rgba(4, 12, 30, 0.9) 100%);
+            border: 1px solid rgba(255, 204, 0, 0.25);
             border-radius: 30px;
             position: relative;
             overflow: hidden;
@@ -216,15 +215,14 @@
             justify-content: center;
             align-items: center;
             padding: 30px;
-            box-shadow: inset 0 0 30px rgba(85, 234, 255, 0.1), 0 30px 60px rgba(0,0,0,0.4);
+            box-shadow: inset 0 0 30px rgba(255, 204, 0, 0.05), 0 30px 60px rgba(0,0,0,0.4);
         }
 
-        /* 대기업 프로필 실루엣 디자인 */
         .avatar-silhouette {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(to bottom, #55eaff, #1d4ed8);
+            background: linear-gradient(to bottom, #ffcc00, #1d4ed8);
             margin-bottom: 25px;
             position: relative;
             opacity: 0.85;
@@ -241,8 +239,8 @@
             background: #040c1e;
             padding: 2px 10px;
             border-radius: 10px;
-            border: 1px solid rgba(85, 234, 255, 0.3);
-            color: #55eaff;
+            border: 1px solid rgba(255, 204, 0, 0.3);
+            color: #ffcc00;
         }
 
         .status-light {
@@ -270,7 +268,7 @@
 
         @keyframes blink { 0% { opacity: 0.2; } 100% { opacity: 1; } }
 
-        /* ---------------- [4] 본문 소개글 및 비즈니스 칼럼 ---------------- */
+        /* ---------------- 본문 소개글 및 비즈니스 칼럼 ---------------- */
         .article-section {
             max-width: 1200px;
             margin: 0 auto;
@@ -285,7 +283,7 @@
         }
 
         .section-kicker {
-            color: #55eaff;
+            color: #ffcc00;
             font-size: 13px;
             font-weight: 800;
             text-transform: uppercase;
@@ -317,14 +315,14 @@
 
         .article-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(85, 234, 255, 0.4);
+            border-color: rgba(255, 204, 0, 0.4);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .card-number {
             font-size: 14px;
             font-weight: 800;
-            color: #55eaff;
+            color: #ffcc00;
             margin-bottom: 20px;
         }
 
@@ -341,7 +339,7 @@
             line-height: 1.8;
         }
 
-        /* ---------------- [5] 정규 법인 표준 푸터 (하단备案정보) ---------------- */
+        /* ---------------- 하단 법인 표준 푸터 ---------------- */
         .footer-section {
             background-color: #020612;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -356,3 +354,6 @@
             margin: 0 auto;
         }
 
+        .footer-top-links {
+            margin-bottom: 30px;
+            display: flex;
