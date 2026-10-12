@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실시간 자유 톡 - 프리채팅</title>
-    <!-- 引入 Tailwind CSS 用于构建精美的现代韩系 UI -->
+    <title>1:1 실시간 고객 안내 (1대1 프라이빗 직聊)</title>
+    <!-- 引入 Tailwind CSS 用于构建高颜值韩系 UI -->
     <script src="https://tailwindcss.com"></script>
     <style>
         /* 引入韩国最常用的现代化开源字体 Pretendard */
@@ -14,101 +14,67 @@
 </head>
 <body class="bg-slate-50 h-screen flex flex-col justify-between antialiased">
 
-    <!-- 1. 顶部状态栏 -->
-    <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-10 shadow-sm">
-        <div class="max-w-2xl mx-auto flex items-center justify-between">
+    <!-- 1. 网页顶部状态栏 -->
+    <header class="bg-white border-b border-slate-200 px-4 py-4 sticky top-0 z-10 shadow-sm">
+        <div class="max-w-xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <!-- 绿色的在线状态小圆点 -->
+                <!-- 绿色的在线状态闪烁小圆点 -->
                 <span class="relative flex h-3 w-3">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                 </span>
-                <h1 class="text-lg font-bold text-slate-800">실시간 자유 톡</h1>
+                <h1 class="text-lg font-bold text-slate-800">1:1 실시간 상담실</h1>
             </div>
-            <!-- 动态生成的免注册游客昵称显示在这里 -->
-            <div id="user-info" class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">
-                접속 중...
-            </div>
+            <span class="text-xs bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full font-semibold">
+                Online
+            </span>
         </div>
     </header>
 
-    <!-- 2. 聊天内容显示区域 -->
-    <main id="chat-box" class="flex-1 p-4 overflow-y-auto max-w-2xl w-full mx-auto space-y-3.5">
-        <!-- 系统欢迎提示 -->
-        <div class="flex justify-center my-2">
-            <span class="text-xs bg-slate-200/70 text-slate-500 px-3 py-1 rounded-md text-center">
-                🔒 본인인증 없이 바로 시작하는 익명 채팅방입니다.
-            </span>
+    <!-- 2. 网页中部引导内容（韩国用户非常看重页面引导） -->
+    <main class="flex-1 p-6 flex flex-col items-center justify-center max-w-xl w-full mx-auto text-center space-y-6">
+        
+        <!-- 精美图标及欢迎语 -->
+        <div class="bg-white border border-slate-200 p-8 rounded-3xl shadow-md w-full space-y-4">
+            <div class="mx-auto w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl">
+                💬
+            </div>
+            <h2 class="text-xl font-bold text-slate-800">안녕하세요! 무엇을 도와드릴까요?</h2>
+            <p class="text-sm text-slate-500 leading-relaxed">
+                로그인이나 회원가입 없이 바로 문의할 수 있는 1:1 익명 비밀 채팅방입니다.<br>
+                <span class="text-blue-500 font-medium">우측 하단의 대화창(말풍선 아이콘)</span>을 누르면 관리자와 즉시 연결되어 1:1 대화를 시작할 수 있습니다.
+            </p>
         </div>
 
-        <!-- 模拟接收到的韩文消息示例 (实际开发时由 Firebase 动态渲染) -->
-        <div class="flex flex-col items-start">
-            <span class="text-xs text-slate-400 ml-1 mb-1">행복한 토끼</span>
-            <div class="bg-white border border-slate-200 text-slate-800 rounded-2xl rounded-tl-none px-3.5 py-2 text-sm max-w-[85%] shadow-sm">
-                안녕하세요! 오늘 한국 날씨 어때요? 😊
-            </div>
+        <!-- 提示贴士 -->
+        <div class="text-xs text-slate-400 flex items-center gap-1.5 justify-center">
+            🔒 본 대화는 암호화되어 안전하게 보호됩니다.
         </div>
 
-        <!-- 模拟自己发送的消息示例 -->
-        <div class="flex flex-col items-end">
-            <span class="text-xs text-slate-400 mr-1 mb-1">나 (즐거운 곰돌이)</span>
-            <div class="bg-blue-500 text-white rounded-2xl rounded-tr-none px-3.5 py-2 text-sm max-w-[85%] shadow-sm">
-                반갑습니다~ 지금 서울은 조금 쌀쌀하네요.
-            </div>
-        </div>
     </main>
 
-    <!-- 3. 底部输入框及发送区域 -->
-    <footer class="bg-white border-t border-slate-200 p-4 sticky bottom-0 z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.02)]">
-        <div class="max-w-2xl w-full mx-auto flex gap-2 items-center">
-            <!-- 消息输入框 -->
-            <input id="message-input" type="text" placeholder="메시지를 입력하세요..." class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-all text-slate-800" onkeypress="if(event.key === 'Enter') sendMessage()">
-            
-            <!-- 发送按钮 -->
-            <button onclick="sendMessage()" class="bg-blue-500 hover:bg-blue-600 active:scale-95 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md shadow-blue-500/10">
-                전송
-            </button>
-        </div>
+    <!-- 3. 网页底部版权栏 -->
+    <footer class="text-center py-4 text-xs text-slate-300 border-t border-slate-100 bg-white">
+        &copy; 2026 Live Chat Service. All rights reserved.
     </footer>
 
-    <!-- 4. 核心逻辑脚本 (随机昵称与发送模拟) -->
-    <script>
-        // 自动生成随机韩国昵称（常用韩文形容词 + 动物组合，非常符合韩国匿名社交习惯）
-        const adjectives = ["행복한", "즐거운", "빛나는", "신나는", "따뜻한", "친절한", "씩씩한"];
-        const nouns = ["토끼", "사자", "고양이", "곰돌이", "다람쥐", "강아지", "펭귄"];
-        
-        const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
-        const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-        const myNickname = `${randomAdjective} ${randomNoun}`;
-        
-        // 显示在页面上
-        document.getElementById("user-info").innerText = `닉네임: ${myNickname}`;
 
-        // 发送消息的函数
-        function sendMessage() {
-            const input = document.getElementById("message-input");
-            const text = input.value.trim();
-            if (text === "") return;
-
-            const chatBox = document.getElementById("chat-box");
-            
-            // 在前端立刻渲染自己发送的内容
-            const messageDiv = document.createElement("div");
-            messageDiv.className = "flex flex-col items-end animate-[fadeIn_0.2s_ease-out]";
-            messageDiv.innerHTML = `
-                <span class="text-xs text-slate-400 mr-1 mb-1">나 (${myNickname})</span>
-                <div class="bg-blue-500 text-white rounded-2xl rounded-tr-none px-3.5 py-2 text-sm max-w-[85%] shadow-sm">
-                    ${text}
-                </div>
-            `;
-            
-            chatBox.appendChild(messageDiv);
-            input.value = ""; // 清空输入框
-            chatBox.scrollTop = chatBox.scrollHeight; // 滚动到底部
-            
-            // 【提示】在对接 Firebase 时，这里不需要手动创建 DOM，只需把 text push 到数据库，由数据库监听器统一渲染即可。
-        }
+    <!-- ========================================== -->
+    <!-- 4. 你的专属 Tawk.to 1对1 实时直聊脚本 (置于 </body> 之前) -->
+    <!-- ========================================== -->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6acc7db869318f34c90da1e0/1k4ncm7cr';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
     </script>
+    <!--End of Tawk.to Script-->
 
 </body>
 </html>
