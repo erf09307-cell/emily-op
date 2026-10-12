@@ -2,366 +2,113 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>MENHANCE | 프리미엄 남성 건강 컨설팅 및 프라이빗 심리 상담</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 자유 톡 - 프리채팅</title>
+    <!-- 引入 Tailwind CSS 用于构建精美的现代韩系 UI -->
+    <script src="https://tailwindcss.com"></script>
     <style>
-        /* [Cloudflare Pages 100% 호환 보장] 완전 정적 일체형 마스터 프레임워크 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Malgun Gothic", "맑은 고딕", -apple-system, sans-serif;
-            letter-spacing: -0.5px;
-        }
-
-        body, html {
-            width: 100%;
-            background-color: #040c1e;
-            color: #ffffff;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* ---------------- [115行 - 134行] 상단 정적 네비게이션 바 ---------------- */
-        .top-navbar {
-            width: 100%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            background-color: #040c1e;
-            position: relative;
-            z-index: 100;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            height: 74px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .company-logo {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: #ffffff;
-        }
-
-        .company-logo span {
-            color: #ffcc00;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 30px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #cbd5e1;
-        }
-
-        .nav-menu a:hover {
-            color: #ffcc00;
-        }
-
-        /* ---------------- [136行 - 213行] 히어로 메인 섹션 ---------------- */
-        .hero-section {
-            width: 100%;
-            background: linear-gradient(135deg, #061539 0%, #040c1e 100%);
-            padding: 80px 0;
-        }
-
-        .main-container {
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-        }
-
-        .content-left {
-            flex: 1.2;
-            max-width: 650px;
-        }
-
-        .eyebrow-badge {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: 700;
-            color: #ffcc00;
-            background: rgba(255, 204, 0, 0.1);
-            border: 1px solid rgba(255, 204, 0, 0.2);
-            padding: 6px 14px;
-            border-radius: 99px;
-            margin-bottom: 25px;
-        }
-
-        .main-title {
-            font-size: 46px;
-            font-weight: 900;
-            line-height: 1.4;
-            margin-bottom: 22px;
-            color: #ffffff;
-        }
-
-        .highlight-text {
-            color: #ffcc00;
-        }
-
-        .sub-title {
-            font-size: 17px;
-            color: #94a3b8;
-            margin-bottom: 45px;
-            line-height: 1.75;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 16px 32px;
-            font-size: 15px;
-            font-weight: 800;
-            border-radius: 12px;
-            cursor: pointer;
-            text-align: center;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-line {
-            background-color: #06C755;
-            color: #ffffff;
-            border: none;
-        }
-
-        .btn-line:hover {
-            background-color: #05b34c;
-        }
-
-        .btn-kakao {
-            background-color: #ffcc00;
-            color: #191919;
-            border: none;
-        }
-
-        .btn-kakao:hover {
-            background-color: #e6b800;
-        }
-
-        .image-right {
-            flex: 0.8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .premium-static-box {
-            width: 100%;
-            max-width: 400px;
-            height: 460px;
-            background-color: #09132a;
-            border: 1px solid rgba(255, 204, 0, 0.25);
-            border-radius: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .avatar-silhouette {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: linear-gradient(to bottom, #ffcc00, #1d4ed8);
-            margin-bottom: 25px;
-        }
-
-        .center-status-text {
-            background-color: #06C755;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-        }
-
-        /* ---------------- [215行 - 275行] 본문 소개글 및 비즈니스 콘텐츠 (전체 화면에 직접 생성) ---------------- */
-        .article-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .section-head {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px auto;
-        }
-
-        .section-kicker {
-            color: #ffcc00;
-            font-size: 14px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 12px;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 900;
-        }
-
-        .article-grid {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .article-card {
-            background-color: #09132a;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            flex: 1;
-            min-width: 320px;
-        }
-
-        .card-number {
-            font-size: 14px;
-            font-weight: 800;
-            color: #ffcc00;
-            margin-bottom: 20px;
-        }
-
-        .article-card h3 {
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 18px;
-            color: #ffffff;
-        }
-
-        .article-card p {
-            font-size: 15px;
-            color: #94a3b8;
-            line-height: 1.8;
-        }
-
-        /* ---------------- [277行 - 315行] 대한민국 정식 법인 표준 푸터 ---------------- */
-        .footer-section {
-            background-color: #020612;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 60px 20px;
-            font-size: 13px;
-            color: #64748b;
-            line-height: 2;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-top-links {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .footer-top-links a {
-            color: #94a3b8;
-            font-weight: 600;
-        }
-
-        .footer-top-links a:hover {
-            color: #ffcc00;
-        }
-
-        .corporate-info-box {
-            max-width: 1100px;
-            margin: 0 auto;
-            text-align: center;
-            opacity: 0.85;
-        }
-
-        .legal-notice {
-            margin-top: 25px;
-            font-size: 12px;
-            color: #475569;
-            border-top: 1px dashed rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
-            text-align: center;
-            line-height: 1.7;
-        }
-
-        @media (max-width: 992px) {
-            .nav-menu { display: none; }
-            .main-container { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .content-left { margin-bottom: 40px; width: 100%; }
-            .main-title { font-size: 34px; }
-            .btn-group { flex-direction: column; width: 100%; gap: 14px; }
-            .btn { width: 100%; }
-            .image-right { width: 100%; }
-            .premium-static-box { height: auto; padding: 30px 20px; }
-            .article-grid { flex-direction: column; }
-        }
+        /* 引入韩国最常用的现代化开源字体 Pretendard */
+        @import url('https://jsdelivr.net');
+        body { font-family: 'Pretendard', sans-serif; }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 h-screen flex flex-col justify-between antialiased">
 
-    <!-- 1. 네비게이션 헤더 -->
-    <header class="top-navbar">
-        <div class="nav-container">
-            <div class="company-logo">MENHANCE <span>CONSULTING</span></div>
-            <nav class="nav-menu">
-                <a href="#about">회사소개</a>
-                <a href="#services">이용약관</a>
-                <a href="#services">개인정보처리방침</a>
-                <a href="#">고객안내센터</a>
-            </nav>
+    <!-- 1. 顶部状态栏 -->
+    <header class="bg-white border-b border-slate-200 px-4 py-3 sticky top-0 z-10 shadow-sm">
+        <div class="max-w-2xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <!-- 绿色的在线状态小圆点 -->
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+                <h1 class="text-lg font-bold text-slate-800">실시간 자유 톡</h1>
+            </div>
+            <!-- 动态生成的免注册游客昵称显示在这里 -->
+            <div id="user-info" class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">
+                접속 중...
+            </div>
         </div>
     </header>
 
-    <!-- 2. 히어로 메인 영역 -->
-    <section class="hero-section" id="about">
-        <div class="main-container">
-            
-            <div class="content-left">
-                <div class="eyebrow-badge">GLOBAL MEN's PSYCHOLOGY STANDARD</div>
-                <h1 class="main-title">
-                    국내 유일의<br>
-                    심리학 기반 전문 성교육 및<br>
-                    <span class="highlight-text">프라이빗 익명 상담</span> 센터
-                </h1>
-                <p class="sub-title">
-                    혼자서는 해결하기 힘들었던 은밀한 고민을 과학적인 심리 기법으로 정밀하게 분석합니다. 
-                    지금 가장 안전한 보안 채널인 LINE 및 KakaoTalk을 통해 100% 철저한 비밀이 보장되는 전문 상담을 받아보세요.
-                </p>
-                <div class="btn-group">
-                    <a href="https://line.me" class="btn btn-line" target="_blank">Official LINE 상담 센터</a>
-                    <a href="https://kakao.com" class="btn btn-kakao" target="_blank">KakaoTalk 실시간 채널</a>
-                </div>
-            </div>
+    <!-- 2. 聊天内容显示区域 -->
+    <main id="chat-box" class="flex-1 p-4 overflow-y-auto max-w-2xl w-full mx-auto space-y-3.5">
+        <!-- 系统欢迎提示 -->
+        <div class="flex justify-center my-2">
+            <span class="text-xs bg-slate-200/70 text-slate-500 px-3 py-1 rounded-md text-center">
+                🔒 본인인증 없이 바로 시작하는 익명 채팅방입니다.
+            </span>
+        </div>
 
-            <!-- 우측 박스: 프라이빗 전담 카운셀러 안내문 영역 -->
-            <div class="image-right">
+        <!-- 模拟接收到的韩文消息示例 (实际开发时由 Firebase 动态渲染) -->
+        <div class="flex flex-col items-start">
+            <span class="text-xs text-slate-400 ml-1 mb-1">행복한 토끼</span>
+            <div class="bg-white border border-slate-200 text-slate-800 rounded-2xl rounded-tl-none px-3.5 py-2 text-sm max-w-[85%] shadow-sm">
+                안녕하세요! 오늘 한국 날씨 어때요? 😊
+            </div>
+        </div>
+
+        <!-- 模拟自己发送的消息示例 -->
+        <div class="flex flex-col items-end">
+            <span class="text-xs text-slate-400 mr-1 mb-1">나 (즐거운 곰돌이)</span>
+            <div class="bg-blue-500 text-white rounded-2xl rounded-tr-none px-3.5 py-2 text-sm max-w-[85%] shadow-sm">
+                반갑습니다~ 지금 서울은 조금 쌀쌀하네요.
+            </div>
+        </div>
+    </main>
+
+    <!-- 3. 底部输入框及发送区域 -->
+    <footer class="bg-white border-t border-slate-200 p-4 sticky bottom-0 z-10 shadow-[0_-2px_10px_rgba(0,0,0,0.02)]">
+        <div class="max-w-2xl w-full mx-auto flex gap-2 items-center">
+            <!-- 消息输入框 -->
+            <input id="message-input" type="text" placeholder="메시지를 입력하세요..." class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-all text-slate-800" onkeypress="if(event.key === 'Enter') sendMessage()">
+            
+            <!-- 发送按钮 -->
+            <button onclick="sendMessage()" class="bg-blue-500 hover:bg-blue-600 active:scale-95 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md shadow-blue-500/10">
+                전송
+            </button>
+        </div>
+    </footer>
+
+    <!-- 4. 核心逻辑脚本 (随机昵称与发送模拟) -->
+    <script>
+        // 自动生成随机韩国昵称（常用韩文形容词 + 动物组合，非常符合韩国匿名社交习惯）
+        const adjectives = ["행복한", "즐거운", "빛나는", "신나는", "따뜻한", "친절한", "씩씩한"];
+        const nouns = ["토끼", "사자", "고양이", "곰돌이", "다람쥐", "강아지", "펭귄"];
+        
+        const randomAdjective = adjectives[Math.floor(Math.random() * adjectives.length)];
+        const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
+        const myNickname = `${randomAdjective} ${randomNoun}`;
+        
+        // 显示在页面上
+        document.getElementById("user-info").innerText = `닉네임: ${myNickname}`;
+
+        // 发送消息的函数
+        function sendMessage() {
+            const input = document.getElementById("message-input");
+            const text = input.value.trim();
+            if (text === "") return;
+
+            const chatBox = document.getElementById("chat-box");
+            
+            // 在前端立刻渲染自己发送的内容
+            const messageDiv = document.createElement("div");
+            messageDiv.className = "flex flex-col items-end animate-[fadeIn_0.2s_ease-out]";
+            messageDiv.innerHTML = `
+                <span class="text-xs text-slate-400 mr-1 mb-1">나 (${myNickname})</span>
+                <div class="bg-blue-500 text-white rounded-2xl rounded-tr-none px-3.5 py-2 text-sm max-w-[85%] shadow-sm">
+                    ${text}
+                </div>
+            `;
+            
+            chatBox.appendChild(messageDiv);
+            input.value = ""; // 清空输入框
+            chatBox.scrollTop = chatBox.scrollHeight; // 滚动到底部
+            
+            // 【提示】在对接 Firebase 时，这里不需要手动创建 DOM，只需把 text push 到数据库，由数据库监听器统一渲染即可。
+        }
+    </script>
+
+</body>
+</html>
